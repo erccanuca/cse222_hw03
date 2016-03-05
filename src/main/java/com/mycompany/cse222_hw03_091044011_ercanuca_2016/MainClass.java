@@ -6,7 +6,6 @@
 package com.mycompany.cse222_hw03_091044011_ercanuca_2016;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
@@ -28,9 +27,11 @@ public class MainClass {
         SpecList<Integer> specific = new SpecList<>();
         specific.add(1);
         specific.add(2);
-        specific.add(3);
-        specific.add(4);
         specific.add(5);
+        specific.add(4);
+        specific.add(0);
+
+
         
         // Create specificList Class object type of Integer and add 5 elements.
         System.out.println("Created another specificList Class object"
@@ -94,6 +95,9 @@ public class MainClass {
         LinkedList<String> list =  (LinkedList<String>) specific3.getIntersectList(specific4);
         System.out.println("Called list toString method");
         System.out.println(list.toString());
+        
+        System.out.println(specific.sortList(1));
+        
     }
     
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * @author ercan
  * @param <E>
  */
-public class SpecList<E> extends LinkedList<E>{
+public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
     
     /**
      * Default constructors for SpecList Class
@@ -46,7 +46,10 @@ public class SpecList<E> extends LinkedList<E>{
                   addFirst(link.get(i));
            }  
        }
-       catch(NullPointerException | ClassCastException | IllegalStateException | IllegalArgumentException exp){
+       catch(NullPointerException |
+               ClassCastException | 
+            IllegalStateException | 
+            IllegalArgumentException exp){
            exp.printStackTrace(System.err);
            return false;
        }
@@ -92,21 +95,59 @@ public class SpecList<E> extends LinkedList<E>{
      * @return the sorted increasing or decreasing list, select by sorting parameter.
      */
      public List<E> sortList(int sorting){
-         
-         if(sorting==1){
-             // increasing sort
+         System.out.println("Size: "+ size());
+         if(sorting==1){// increasing sort
+             for (int i = 1; i <= size()/2; i++) {
+                 for (int j = size()-i; j <= i; j--) {
+                      if(this.get(j).compareTo(this.get(j-1)) < 0){
+                         E temp = get(j);
+                         set(j, get(j-1));
+                         set(j-1, temp);
+                      }
+                 }
+                 for (int j = i-1; j < size()-i; j++) {
+                     if(this.get(j).compareTo(this.get(j+1)) > 0){
+                         E temp = get(j);
+                         set(j, get(j+1));
+                         set(j+1, temp);
+                     }
+                 }
+                 
+             }
+             
          }
-         else{
-             // decreasing sort
+         else{// decreasing sort
+             
+              for (int i =size()/2 ; i >=1 ; i--) {
+                
+                  for (int j = size()-i; j <= i; j--) {
+                      if(this.get(j).compareTo(this.get(j-1)) > 0){
+                         E temp = get(j);
+                         set(j, get(j-1));
+                         set(j-1, temp);
+                      }
+                 }
+                  for (int j = i-1; j < size()-i; j++) {
+                     if(this.get(j).compareTo(this.get(j+1)) < 0){
+                         E temp = get(j);
+                         set(j, get(j+1));
+                         set(j+1, temp);
+                     }
+                 }
+                  
+                
+                  
+                 
+                 
+             }
+              
          }
-         
-         return null;
+        
+         return this;
      }
 
     @Override
     public String toString() {
         return "SpecList{"  +  super.toString() + '}';
     }
-
-     
 }
