@@ -1,19 +1,20 @@
-package com.mycompany.cse222_hw03_091044011_ercanuca_2016;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+package com.mycompany.cse222_hw03_091044011_ercanuca_2016;
+
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
- *
+ * Specific class extends LinkedList and comparable elements
  * @author ercan
- * @param <E>
+ * @version 8.0.2
+ * @param <E> it is comparable generics elements
  */
 public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
     

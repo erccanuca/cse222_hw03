@@ -98,7 +98,7 @@ public class MainClass {
         System.out.println("Called list toString method");
         System.out.println(list.toString());
         
-        System.out.println(specific3.sortList(1));
+        System.out.println(specific2.sortList(1));
         
     }
     
