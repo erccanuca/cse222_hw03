@@ -8,7 +8,8 @@ package com.mycompany.cse222_hw03_091044011_ercanuca_2016;
 import java.util.LinkedList;
 
 /**
- *
+ * main Method Class
+ * @version 8.0.2 Netbeans IDE
  * @author ercan
  */
 public class MainClass {

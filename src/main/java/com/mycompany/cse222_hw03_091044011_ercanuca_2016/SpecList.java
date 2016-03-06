@@ -37,6 +37,7 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
    
     /**
      * Appends all of the elements in the specified collection to the head of the list.
+       addFirst working Constant time O(1), for loop n-1 times so time complexity is O(n) time
      * @param c Collection class type, generic type is E
      * @return if addAllatHead method is addAll elements true, otherwise false;
      */
@@ -59,6 +60,9 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
 
     /**
      * Finds and returns intersection list (list of unique elements available in both collections) 
+       LinkedList get method take O(n) time and contains take O(n) time too,
+       for size times working total time of method is size*O(n)*O(n) is O(n^3),
+       namely the method complexiy is O(n^3) time.
      * @param c Collection class type, generic type is E
      * @return the intersection of LinkedLists
      */
@@ -92,6 +96,9 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
     }
    /**
      * Sorts and returns list (using cocktail sort algorithm)
+       LinkedList get method take O(n) time,
+       for size times working total time of method is O(n/2)*O(n-1)*O(n) is O(n^3),
+       namely the method complexiy is O(n^3) time.
      * @param sorting if it is 1 increasing sort, else decreasing.
      * @return the sorted increasing or decreasing list, select by sorting parameter.
      */
