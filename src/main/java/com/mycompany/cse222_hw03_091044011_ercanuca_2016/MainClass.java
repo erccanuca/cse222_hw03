@@ -30,6 +30,8 @@ public class MainClass {
         specific.add(5);
         specific.add(4);
         specific.add(0);
+        specific.add(2);
+        specific.add(3);
 
 
         
@@ -96,7 +98,7 @@ public class MainClass {
         System.out.println("Called list toString method");
         System.out.println(list.toString());
         
-        System.out.println(specific.sortList(1));
+        System.out.println(specific3.sortList(1));
         
     }
     

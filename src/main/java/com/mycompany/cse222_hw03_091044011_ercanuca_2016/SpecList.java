@@ -95,56 +95,43 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
      * @return the sorted increasing or decreasing list, select by sorting parameter.
      */
      public List<E> sortList(int sorting){
-         System.out.println("Size: "+ size());
-         if(sorting==1){// increasing sort
-             for (int i = 1; i <= size()/2; i++) {
-                 for (int j = size()-i; j <= i; j--) {
-                      if(this.get(j).compareTo(this.get(j-1)) < 0){
-                         E temp = get(j);
-                         set(j, get(j-1));
-                         set(j-1, temp);
-                      }
-                 }
-                 for (int j = i-1; j < size()-i; j++) {
-                     if(this.get(j).compareTo(this.get(j+1)) > 0){
-                         E temp = get(j);
-                         set(j, get(j+1));
-                         set(j+1, temp);
-                     }
-                 }
-                 
-             }
-             
-         }
-         else{// decreasing sort
-             
-              for (int i =size()/2 ; i >=1 ; i--) {
-                
-                  for (int j = size()-i; j <= i; j--) {
-                      if(this.get(j).compareTo(this.get(j-1)) > 0){
-                         E temp = get(j);
-                         set(j, get(j-1));
-                         set(j-1, temp);
-                      }
-                 }
-                  for (int j = i-1; j < size()-i; j++) {
-                     if(this.get(j).compareTo(this.get(j+1)) < 0){
-                         E temp = get(j);
-                         set(j, get(j+1));
-                         set(j+1, temp);
-                     }
-                 }
-                  
-                
-                  
-                 
-                 
-             }
-              
-         }
-        
-         return this;
-     }
+        if (sorting == 1) { // increasing sort
+            for (int i = 1; i <= size() / 2; i++) { // phase i of shaker sort    
+                for (int j = i - 1; j < size() - i; j++) { // first do left to right bubbling pass
+                    if (this.get(j).compareTo(this.get(j + 1)) > 0) {
+                        E temp = get(j);
+                        set(j, get(j + 1));
+                        set(j + 1, temp);
+                    }
+                }
+                for (int j = size() - i; j >= i; j--) { // now do right to left bubbling pass
+                    if (this.get(j).compareTo(this.get(j - 1)) < 0) {
+                        E temp = get(j);
+                        set(j, get(j - 1));
+                        set(j - 1, temp);
+                    }
+                }
+            } // end first for that after if      
+        } else { // decreasing sort
+            for (int i = size() / 2; i >= 1; i--) {  // phase i of shaker sort
+                for (int j = size() - i; j >= i; j--) { // first do left to right bubbling pass
+                    if (this.get(j).compareTo(this.get(j - 1)) > 0) {
+                        E temp = get(j);
+                        set(j, get(j - 1));
+                        set(j - 1, temp);
+                    }
+                }
+                for (int j = i - 1; j < size() - i; j++) { // now do right to left bubbling pass
+                    if (this.get(j).compareTo(this.get(j + 1)) < 0) {
+                        E temp = get(j);
+                        set(j, get(j + 1));
+                        set(j + 1, temp);
+                    }
+                }         
+            }
+        }  // end first for that after else
+        return this;    
+    }
 
     @Override
     public String toString() {
