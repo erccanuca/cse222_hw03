@@ -9,11 +9,15 @@ import java.util.LinkedList;
 
 /**
  * main Method Class
- * @version 8.0.2 Netbeans IDE
+ * @version Netbeans IDE 8.0.2 
  * @author ercan
  */
 public class MainClass {
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String [] args){
         
         // Create specificList Class object type of Integer and add 5 elements.
@@ -100,7 +104,7 @@ public class MainClass {
         System.out.println(list.toString());
         
         System.out.println(specific2.sortList(1));
-        
+               
     }
     
 }

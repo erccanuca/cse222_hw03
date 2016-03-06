@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Specific class extends LinkedList and comparable elements
  * @author ercan
- * @version 8.0.2
+ * @version Netbeans IDE 8.0.2 
  * @param <E> it is comparable generics elements
  */
 public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
@@ -25,7 +25,6 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
     public SpecList() {
         super();
     }
-    
     /**
      * One parameter Constructor of SpecList Class
      * And call the one parameter constructor of the LinkedList 
@@ -39,7 +38,7 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
      * Appends all of the elements in the specified collection to the head of the list.
        addFirst working Constant time O(1), for loop n-1 times so time complexity is O(n) time
      * @param c Collection class type, generic type is E
-     * @return if addAllatHead method is addAll elements true, otherwise false;
+     * @return if addAllatHead method is addAll elements true, otherwise handling exception and return false;
      */
    public boolean addAllAtHead(Collection<? extends E> c){
        LinkedList<E> link = (LinkedList<E>) c;
@@ -48,10 +47,12 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
                   addFirst(link.get(i));
            }  
        }
-       catch(NullPointerException |
-               ClassCastException | 
-            IllegalStateException | 
-            IllegalArgumentException exp){
+       catch(NullPointerException     |
+             ClassCastException       | 
+             IllegalStateException    | 
+             IllegalArgumentException |
+             IndexOutOfBoundsException exp)
+       {
            exp.printStackTrace(System.err);
            return false;
        }
@@ -67,32 +68,36 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
      * @return the intersection of LinkedLists
      */
     public List<E> getIntersectList (Collection<? extends E> c){
-        LinkedList<E> intersectionlist = (LinkedList<E>) c;
-        LinkedList<E> returnList = new LinkedList<>();
-        
-        int size;
-        // select bigger size
-        if(intersectionlist.size() > size())
-            size = intersectionlist.size();
-        else
-            size = size();
-        // Handling for contains and add throws
-        try{      
-            for (int i=0; i< size ; i++)
-            {                
-              if(contains(intersectionlist.get(i)) && !returnList.contains(intersectionlist.get(i)))
-                  returnList.add(intersectionlist.get(i));
+        // Handling for ClassCast_intersectionList,contains,add,get methods throws
+        try{ 
+            LinkedList<E> intersectionlist = (LinkedList<E>) c;
+            LinkedList<E> returnList = new LinkedList<>();
 
-            }
-          }catch(NullPointerException     |
-                 ClassCastException       | 
-                 IllegalStateException    | 
-                 IllegalArgumentException |
-                 UnsupportedOperationException exp){
+            int size;
+            if(intersectionlist.size() > this.size())// select bigger size
+                size = intersectionlist.size();
+            else
+                size = this.size();
+
+            for (int i=0; i< size ; i++)
+                {                
+                  if(this.contains(intersectionlist.get(i)) && !returnList.contains(intersectionlist.get(i)))
+                      returnList.add(intersectionlist.get(i));
+
+                }
+            return returnList;
+
+          }catch(NullPointerException          |
+                 ClassCastException            | 
+                 IllegalStateException         | 
+                 IllegalArgumentException      |
+                 UnsupportedOperationException |
+                 IndexOutOfBoundsException exp)
+          {
             exp.printStackTrace(System.err);
             return null;
           } 
-        return returnList;
+        
     }
    /**
      * Sorts and returns list (using cocktail sort algorithm)
@@ -103,41 +108,54 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
      * @return the sorted increasing or decreasing list, select by sorting parameter.
      */
      public List<E> sortList(int sorting){
-        if (sorting == 1) { // increasing sort
-            for (int i = 1; i <= size() / 2; i++) { // phase i of shaker sort    
-                for (int j = i - 1; j < size() - i; j++) { // first do left to right bubbling pass
-                    if (this.get(j).compareTo(this.get(j + 1)) > 0) {
-                        E temp = get(j);
-                        set(j, get(j + 1));
-                        set(j + 1, temp);
+        // Handling for  get and set methods throws
+        try{
+            if (sorting == 1) { // increasing sort
+             for (int i = 1; i <= this.size() / 2; i++) { // phase i of shaker sort    
+                 for (int j = i - 1; j < this.size() - i; j++) { // first do left to right bubbling pass
+                     if (this.get(j).compareTo(this.get(j + 1)) > 0) {
+                         E temp = this.get(j);
+                         this.set(j, this.get(j + 1));
+                         this.set(j + 1, temp);
+                     }
+                 }
+                 for (int j = this.size() - i; j >= i; j--) { // now do right to left bubbling pass
+                     if (this.get(j).compareTo(this.get(j - 1)) < 0) {
+                         E temp = this.get(j);
+                         this.set(j, this.get(j - 1));
+                         this.set(j - 1, temp);
+                     }
+                 }
+             } // end first for that after if      
+            }else { // decreasing sort
+                for (int i = this.size() / 2; i >= 1; i--) {  // phase i of shaker sort
+                    for (int j = this.size() - i; j >= i; j--) { // first do left to right bubbling pass
+                        if (this.get(j).compareTo(this.get(j - 1)) > 0) {
+                            E temp = this.get(j);
+                            this.set(j, this.get(j - 1));
+                            this.set(j - 1, temp);
+                        }
                     }
-                }
-                for (int j = size() - i; j >= i; j--) { // now do right to left bubbling pass
-                    if (this.get(j).compareTo(this.get(j - 1)) < 0) {
-                        E temp = get(j);
-                        set(j, get(j - 1));
-                        set(j - 1, temp);
-                    }
-                }
-            } // end first for that after if      
-        } else { // decreasing sort
-            for (int i = size() / 2; i >= 1; i--) {  // phase i of shaker sort
-                for (int j = size() - i; j >= i; j--) { // first do left to right bubbling pass
-                    if (this.get(j).compareTo(this.get(j - 1)) > 0) {
-                        E temp = get(j);
-                        set(j, get(j - 1));
-                        set(j - 1, temp);
-                    }
-                }
-                for (int j = i - 1; j < size() - i; j++) { // now do right to left bubbling pass
-                    if (this.get(j).compareTo(this.get(j + 1)) < 0) {
-                        E temp = get(j);
-                        set(j, get(j + 1));
-                        set(j + 1, temp);
-                    }
-                }         
-            }
-        }  // end first for that after else
+                    for (int j = i - 1; j < this.size() - i; j++) { // now do right to left bubbling pass
+                        if (this.get(j).compareTo(this.get(j + 1)) < 0) {
+                            E temp = this.get(j);
+                            this.set(j, this.get(j + 1));
+                            this.set(j + 1, temp);
+                        }
+                    }         
+               }
+            }  // end first for that after else 
+        }catch(NullPointerException          |
+               ClassCastException            | 
+               IllegalArgumentException      |
+               UnsupportedOperationException |
+               IndexOutOfBoundsException exp)
+        {
+            
+            exp.printStackTrace(System.err);
+            return null;
+        } 
+        
         return this;    
     }
 
