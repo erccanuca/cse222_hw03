@@ -7,6 +7,7 @@
 package com.mycompany.cse222_hw03_091044011_ercanuca_2016;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
      * @return if addAllatHead method is addAll elements true, otherwise handling exception and return false;
      */
    public boolean addAllAtHead(Collection<? extends E> c){
-       LinkedList<E> link = (LinkedList<E>) c;
        try{
+           LinkedList<E> link = (LinkedList<E>) c;
            for (int i = link.size()-1; i >=0 ; i--) {
                   addFirst(link.get(i));
            }  
