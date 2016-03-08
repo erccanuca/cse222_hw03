@@ -32,7 +32,7 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
      * @param c Collection class type, generic type is E
      */
     public SpecList(Collection<? extends E> c) {
-        super(c);
+            super(c);    
     }
    
     /**
@@ -74,14 +74,8 @@ public class SpecList<E extends Comparable<E>> extends LinkedList<E>{
             LinkedList<E> intersectionlist = (LinkedList<E>) c;
             LinkedList<E> returnList = new LinkedList<>();
 
-            int size;
-            if(intersectionlist.size() > this.size())// select bigger size
-                size = intersectionlist.size();
-            else
-                size = this.size();
-
-            for (int i=0; i< size ; i++)
-                {                
+            for (int i=0; i< intersectionlist.size() ; i++)
+                {  
                   if(this.contains(intersectionlist.get(i)) && !returnList.contains(intersectionlist.get(i)))
                       returnList.add(intersectionlist.get(i));
 
