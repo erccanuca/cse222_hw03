@@ -6,7 +6,6 @@
 package com.mycompany.cse222_hw03_091044011_ercanuca_2016;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * main Method Class
@@ -28,7 +27,9 @@ public class MainClass {
         tester3();
                
     }
-    
+    /**
+     * Test1 for metod 1(addAllAtHead)
+     */
     private static void tester1(){
         System.out.println("----------------------Tester I--------------------");
         System.out.println("----------------------INTEGERS--------------------");
@@ -159,9 +160,12 @@ public class MainClass {
         
         System.out.println("\n----------------------Tester I END--------------------\n\n");
     }
+    /**
+     * Test2 for metod 2(getIntersectList)
+     */
     private static void tester2(){
         System.out.println("----------------------Tester II--------------------");
-         System.out.println("----------------------INTEGERS--------------------");
+        System.out.println("----------------------INTEGERS--------------------");
         // Create specificList Class object type of Integer and add 5 elements.
         System.out.println("Created specificList Class object"+ 
                            " type of Integer and add 7 elements like above.\n" + 
@@ -182,8 +186,6 @@ public class MainClass {
         specific.add(2);
         specific.add(3);
 
-
-        
         // Create specificList Class object type of Integer and add 5 elements.
         System.out.println("Created another specificList Class object"
                            + " type of Integer and add 5 elements like above.\n" + 
@@ -289,6 +291,9 @@ public class MainClass {
         System.out.println("\n----------------------Tester II END--------------------\n\n");
         
     }
+    /**
+     * Test3 for metod 3(sorting)
+     */
     private static void tester3(){
         System.out.println("----------------------Tester III--------------------");
         System.out.println("----------------------INTEGERS--------------------");

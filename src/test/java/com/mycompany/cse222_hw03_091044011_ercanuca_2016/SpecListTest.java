@@ -132,6 +132,18 @@ public class SpecListTest {
         assertEquals(expResult, result);
         
     }
+    
+     /**
+     * Test of sortList method, of class SpecList.
+     * throws IndexOutOfBoundsException
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testSortList_IndexOutOfBoundsException() {
+        System.out.println("sortList_IndexOutOfBoundsException");
+        SpecList instance = new SpecList();
+        instance.add(11);
+        assertEquals(instance.get(1), instance.get(0));  // get throw eden olduğundan  
+    }
 
     /**
      * Test of toString method, of class SpecList.
